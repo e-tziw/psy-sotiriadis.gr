@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Μιχάλης Σωτηριάδης - Ψυχολόγος</title>
+    <meta name="description" content="Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας" />
+    <meta name="author" content="Μιχάλης Σωτηριάδης" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/7f45q8S/Logo-white-03.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="Μιχάλης Σωτηριάδης - Ψυχολόγος" />
+    <meta property="og:description" content="Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #953257;
+            --primary-dark: #7a2947;
+            --secondary: #dec3d0;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--gray-50);
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Animations */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fade-in 0.8s ease-out forwards;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo img {
+            height: 3rem;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Desktop Navigation */
+        .nav-desktop {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-desktop a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .nav-desktop a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .nav-desktop a:hover::before,
+        .nav-desktop a.active::before {
+            transform: scaleX(1);
+        }
+
+        .nav-desktop a span {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Book Appointment Button */
+        .book-btn {
+            display: none;
+            background: white;
+            color: var(--primary);
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .book-btn:hover {
+            background: var(--gray-100);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            background: rgba(149, 50, 87, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            z-index: 40;
+        }
+
+        .mobile-menu.open {
+            display: block;
+            animation: fade-in 0.3s ease-out;
+        }
+
+        .mobile-menu a {
+            display: block;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .book-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            background: url('https://i.ibb.co/YB7nyshQ/35f389cc-9bff-46b1-91d1-4cc147b50f2f.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(1px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 0 1.5rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, white, #e5e7eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(149, 50, 87, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* Session Types */
+        .session-types {
+            background: linear-gradient(135deg, rgba(149, 50, 87, 0.1), rgba(222, 195, 208, 0.2));
+        }
+
+        .session-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .session-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .session-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .session-icon {
+            height: 8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .session-icon img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .session-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gray-800);
+            margin-bottom: 1rem;
+        }
+
+        .session-card p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Services */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            width: 100%;
+            height: 12rem;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .service-card:hover .card-inner,
+        .service-card:focus-within .card-inner,
+        .service-card.active .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--secondary), rgba(222, 195, 208, 0.8));
+            color: var(--primary);
+            transform: rotateY(180deg);
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        /* About */
+        .about {
+            background: linear-gradient(135deg, rgba(222, 195, 208, 0.2), rgba(149, 50, 87, 0.1));
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .about-image {
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-image img {
+            width: 280px;
+            border-radius: 1rem;
+            box-shadow: 0 8px 22px rgba(149, 50, 87, 0.25);
+            border: 4px solid var(--primary);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(149, 50, 87, 0.2), transparent);
+            border-radius: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .about-image:hover::before {
+            opacity: 1;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .contact-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .contact-btn.instagram {
+            background: linear-gradient(45deg, #e1306c, #405de6);
+        }
+
+        .contact-btn.email {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        }
+
+        .contact-btn.phone {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: linear-gradient(135deg, rgba(149, 50, 87, 0.05), rgba(222, 195, 208, 0.1));
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--gray-800);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .form-submit:hover {
+            box-shadow: 0 4px 12px rgba(149, 50, 87, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 3rem;
+            position: relative;
+            width: 100%;
+            height: 24rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(149, 50, 87, 0.25);
+            border: 4px solid var(--primary);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+            }
+
+            .book-btn {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image img {
+                width: 80vw;
+                max-width: 280px;
+            }
+
+            .service-card.active .card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="https://i.ibb.co/m5126B8c/Logo-white-03-1.png" alt="Λογότυπο" />
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="#hero" class="nav-link active">
+                    <span>Αρχική</span>
+                </a>
+                <a href="#services" class="nav-link">
+                    <span>Υπηρεσίες</span>
+                </a>
+                <a href="#about" class="nav-link">
+                    <span>Σχετικά</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span>Επικοινωνία</span>
+                </a>
+            </nav>
+
+            <!-- Book Appointment Button -->
+            <a href="#contact" class="book-btn">Κλείσε Ραντεβού</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#hero" onclick="closeMobileMenu()">Αρχική</a>
+            <a href="#services" onclick="closeMobileMenu()">Υπηρεσίες</a>
+            <a href="#about" onclick="closeMobileMenu()">Σχετικά</a>
+            <a href="#contact" onclick="closeMobileMenu()">Επικοινωνία</a>
+            <a href="#contact" class="book-btn" onclick="closeMobileMenu()">Κλείσε Ραντεβού</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content animate-fade-in">
+            <h1>Μιχάλης Σωτηριάδης</h1>
+            <p class="animate-fade-in">
+                Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας
+            </p>
+            <a href="#contact" class="hero-btn animate-fade-in">
+                Ξεκινήστε τη Διαδρομή σας
+            </a>
+        </div>
+    </section>
+
+    <!-- Session Types -->
+    <section id="session-types" class="session-types">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Τύποι Συνεδριών</h2>
+            <div class="session-grid">
+                <div class="session-card animate-fade-in">
+                    <div class="session-icon">
+                        <img src="https://i.imgur.com/iLV5PPX.jpeg" alt="Δια Ζώσης Συνεδρίες" />
+                    </div>
+                    <h3>Δια Ζώσης Συνεδρίες</h3>
+                    <p>Παρέχουμε συνεδρίες στο φυσικό μας χώρο, σε ένα ασφαλές και ήρεμο περιβάλλον.</p>
+                </div>
+                <div class="session-card animate-fade-in">
+                    <div class="session-icon">
+                        <img src="https://i.imgur.com/celeWqr.png" alt="Online Συνεδρίες" />
+                    </div>
+                    <h3>Online Συνεδρίες</h3>
+                    <p>Δυνατότητα για συνεδρίες μέσω διαδικτύου, από τον δικό σας χώρο με ασφάλεια και άνεση.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Υπηρεσίες</h2>
+            <div class="services-grid">
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Ατομική Συμβουλευτική</div>
+                        <div class="card-back">
+                            Βοήθεια στην αντιμετώπιση προσωπικών δυσκολιών και διαπροσωπικών ζητημάτων.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Συμβουλευτική Εφήβων</div>
+                        <div class="card-back">
+                            Υποστήριξη σε εφήβους για ζητήματα ταυτότητας, άγχους, σχολικής πίεσης και σχέσεων.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Ομαδική Συμβουλευτική</div>
+                        <div class="card-back">
+                            Μοιράσου σκέψεις, άκου εμπειρίες και ενίσχυσε την προσωπική σου εξέλιξη μέσα από την ομάδα.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Διαταραχές Άγχους και Στρες</div>
+                        <div class="card-back">
+                            Αναγνώρισε τις αιτίες του άγχους και μάθε πώς να το διαχειρίζεσαι αποτελεσματικά. Απόκτησε επίγνωση και εργαλεία για να θέσεις το άγχος υπό έλεγχο.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Διαταραχές Διάθεσης</div>
+                        <div class="card-back">
+                            Μη μένεις στις μεταπτώσεις. Μάθε πώς να διαχειρίζεσαι την αλλαγή και να ενισχύεις τη συναισθηματική σου ανθεκτικότητα.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Επαγγελματικός Προσανατολισμός</div>
+                        <div class="card-back">
+                            Γνώρισε τον εαυτό σου και επίλεξε με αυτοπεποίθηση την καριέρα που σου ταιριάζει.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Σχετικά με τον Μιχάλη</h2>
+            <div class="about-content animate-fade-in">
+                <div class="about-image">
+                    <img src="https://i.ibb.co/TBTPxhpS/10d1624b-dac1-4266-8db5-b5d8332373c1.jpg" alt="Μιχάλης Σωτηριάδης" />
+                </div>
+                <div class="about-text">
+      <p>Ο Μιχάλης Σωτηριάδης είναι απόφοιτος του τμήματος Ψυχολογίας στο <strong>University of Sheffield</strong> (Πανεπιστήμιο του Σέφιλντ) έπειτα μετακόμισε στην Αθήνα για να συνεχίσει τις μεταπτυχιακές του σπουδές. 
+Έχει αποκτήσει το μεταπτυχιακό του πάνω στην Οργανωσιακή Ψυχολογία από το <b>Deree - The American College of Greece</b>. Επίσης, έχει εκπαιδευτεί πάνω στην Σχολική Ψυχολογία με ειδίκευση πάνω στην Διαταραχή Αυτιστικού Φάσματος από το <b>Εθνικό Καποδιστριακό Πανεπιστήμιο Αθηνών</b>. Επιπρόθετα, εκπαιδεύεται συστηματικά σε σεμινάρια και θεραπευτικές τεχνικές όπως και σε διάφορα συνέδρια ψυχολογίας. Επιπλέον, έχει εργαστεί στην <b>Βοστώνη</b> καθώς και στην <b>Αθήνα</b> κατά την διάρκεια των σπουδών του, δινοντάς του ποικιλόμορφες εμπειρίες εμπλουτίζοντας τις γνώσεις του πάνω στην επιστήμη της Ψυχολογίας.
+Υπηρέτησε ως ψυχολόγος  στην Λήμνο, αποκτώντας έτσι και από εκεί μεγάλη εμπειρία λόγω πληθώρας περιστατικών, τόσο σε κλινικό όσο και κοινωνικό επίπεδο. Τέλος έχει συμμετάσχει σε ερευνητικά projects σε Αμερική και Ευρωπαϊκή Ένωση, κατά την ακαδημαϊκή και επαγγελματική του καριέρα.</p>
+      <p>Ειδικεύεται σε τεχνικές διαχείρισης άγχους, κατάθλιψης, και βελτίωσης διαπροσωπικών σχέσεων, προσφέροντας ένα ασφαλές και εμπιστευτικό περιβάλλον.</p>
+    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Επικοινωνία</h2>
+            
+            <!-- Contact Buttons -->
+            <div class="contact-buttons animate-fade-in">
+                <a href="https://www.instagram.com/sotiriadis.psychologist/" target="_blank" rel="noopener noreferrer" class="contact-btn instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="mailto:m.sotiriadis@outlook.com" class="contact-btn email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m4 4 7.07 7.07a2 2 0 0 0 2.83 0L21 4"/>
+                        <path d="m3 6 7.07 7.07a2 2 0 0 0 2.83 0L21 6"/>
+                        <path d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6"/>
+                    </svg>
+                    Email
+                </a>
+                <a href="tel:+306944994979" class="contact-btn phone">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    Τηλέφωνο
+                </a>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form animate-fade-in">
+                <h3>Κλείσε Ραντεβού</h3>
+                <form action="https://formspree.io/f/xrbkgqrb" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ονοματεπώνυμο" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Τηλέφωνο" />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Μήνυμα" required rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Αποστολή</button>
+                </form>
+            </div>
+
+            <!-- Map -->
+            <div class="map-container animate-fade-in">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d318.37078376806755!2d22.983105586824568!3d40.61068273933176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a8389421601af9%3A0x4451ff7e059d8e82!2sDim.%20Tsiapanou%2016%2C%20Pilea%20543%2052!5e0!3m2!1sen!2sgr!4v1748623906657!5m2!1sen!2sgr"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Χάρτης με τη διεύθυνση Dim. Tsiapanou 16, Πυλαία, Θεσσαλονίκη">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Μιχάλης Σωτηριάδης - Όλα τα δικαιώματα διατηρούνται</p>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('open');
+        }
+
+        // Service card flip functionality
+        function toggleCard(card) {
+            if (window.innerWidth <= 768) {
+                const serviceCard = card.parentElement;
+                const allCards = document.querySelectorAll('.service-card');
+                
+                allCards.forEach(c => {
+                    if (c !== serviceCard) {
+                        c.classList.remove('active');
+                    }
+                });
+                
+                serviceCard.classList.toggle('active');
+            }
+        }
+
+        // Close cards when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.service-card')) {
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                closeMobileMenu();
+            });
+        });
+
+        // Active navigation link highlighting
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollPosition = window.scrollY + 100;
+
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', updateActiveNavLink);
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.animate-fade-in').forEach((element, index) => {
+                element.style.animationPlayState = 'running';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
