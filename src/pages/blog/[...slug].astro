@@ -1,0 +1,52 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout>
+  <section style="padding-top: 8rem; padding-bottom: 5rem; background: var(--gray-50); min-height: 100vh;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; background: white; padding: 3rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+      
+      <h1 style="color: var(--primary); font-size: 2.5rem; margin-bottom: 1rem;">{post.data.title}</h1>
+      <p style="color: var(--gray-600); margin-bottom: 2rem; font-style: italic;">{post.data.description}</p>
+      
+      <hr style="border: 0; border-top: 1px solid var(--gray-200); margin-bottom: 2rem;" />
+      
+      <!-- Εδώ μπαίνει αυτόματα το κείμενο από το Markdown (.md) αρχείο -->
+      <div class="blog-content">
+        <Content />
+      </div>
+      
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  /* Βασικά στυλ για να φαίνεται όμορφα το κείμενο του άρθρου */
+  .blog-content h1, .blog-content h2, .blog-content h3 { color: var(--primary-dark); margin: 2rem 0 1rem; }
+  .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; color: var(--gray-700); font-size: 1.1rem; }
+  .blog-content ul, .blog-content ol { margin-bottom: 1.5rem; padding-left: 2rem; }
+  .blog-content li { margin-bottom: 0.5rem; color: var(--gray-700); font-size: 1.1rem; }
+  .blog-content blockquote { 
+    border-left: 4px solid var(--primary); 
+    font-style: italic; color: var(--gray-600); 
+    background: var(--gray-100); 
+    padding: 1rem; 
+    border-radius: 0 0.5rem 0.5rem 0; 
+    margin-bottom: 1.5rem; 
+  }
+  .blog-content blockquote p { margin-bottom: 0; }
+  .blog-content img { max-width: 100%; border-radius: 0.5rem; height: auto; margin-bottom: 1.5rem; }
+</style>

@@ -1,0 +1,845 @@
+---
+// Εδώ μπορούμε μελλοντικά να βάλουμε δυναμικό SEO (τίτλους κ.λπ.)
+---
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Μιχάλης Σωτηριάδης Ψυχολόγος Άνω Τούμπα</title>
+    <meta name="description" content="Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας" />
+    <meta name="author" content="Μιχάλης Σωτηριάδης" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/7f45q8S/Logo-white-03.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="Μιχάλης Σωτηριάδης - Ψυχολόγος" />
+    <meta property="og:description" content="Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+
+    <style is:global>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #953257;
+            --primary-dark: #7a2947;
+            --secondary: #dec3d0;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--gray-50);
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Animations */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slide-in-right {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fade-in 0.8s ease-out forwards;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo img {
+            height: 3rem;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Desktop Navigation */
+        .nav-desktop {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-desktop a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .nav-desktop a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .nav-desktop a:hover::before,
+        .nav-desktop a.active::before {
+            transform: scaleX(1);
+        }
+
+        .nav-desktop a span {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Book Appointment Button */
+        .book-btn {
+            display: none;
+            background: white;
+            color: var(--primary);
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .book-btn:hover {
+            background: var(--gray-100);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            background: rgba(149, 50, 87, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            z-index: 40;
+        }
+
+        .mobile-menu.open {
+            display: block;
+            animation: fade-in 0.3s ease-out;
+        }
+
+        .mobile-menu a {
+            display: block;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .book-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            background: url('https://i.ibb.co/0pqvxW8d/IMG-1916.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(1px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 0 1.5rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, white, #e5e7eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(149, 50, 87, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* Session Types */
+        .session-types {
+            background: linear-gradient(135deg, rgba(149, 50, 87, 0.1), rgba(222, 195, 208, 0.2));
+        }
+
+        .session-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .session-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .session-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .session-icon {
+            height: 8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .session-icon img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .session-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gray-800);
+            margin-bottom: 1rem;
+        }
+
+        .session-card p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Services */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            width: 100%;
+            height: 12rem;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .service-card:hover .card-inner,
+        .service-card:focus-within .card-inner,
+        .service-card.active .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--secondary), rgba(222, 195, 208, 0.8));
+            color: var(--primary);
+            transform: rotateY(180deg);
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        /* About */
+        .about {
+            background: linear-gradient(135deg, rgba(222, 195, 208, 0.2), rgba(149, 50, 87, 0.1));
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .about-image {
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-image img {
+            width: 280px;
+            border-radius: 1rem;
+            box-shadow: 0 8px 22px rgba(149, 50, 87, 0.25);
+            border: 4px solid var(--primary);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(149, 50, 87, 0.2), transparent);
+            border-radius: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .about-image:hover::before {
+            opacity: 1;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .contact-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .contact-btn.instagram {
+            background: linear-gradient(45deg, #e1306c, #405de6);
+        }
+
+        .contact-btn.email {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        }
+		
+		.contact-btn.whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+
+        .contact-btn.phone {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: linear-gradient(135deg, rgba(149, 50, 87, 0.05), rgba(222, 195, 208, 0.1));
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--gray-800);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            transform: perspective(1px) translateZ(0);
+        }
+
+        .form-submit:hover {
+            box-shadow: 0 4px 12px rgba(149, 50, 87, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 3rem;
+            position: relative;
+            width: 100%;
+            height: 24rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(149, 50, 87, 0.25);
+            border: 4px solid var(--primary);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+            }
+
+            .book-btn {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image img {
+                width: 80vw;
+                max-width: 280px;
+            }
+
+            .service-card.active .card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://i.ibb.co/m5126B8c/Logo-white-03-1.png" alt="Λογότυπο" />
+            </div>
+
+            <nav class="nav-desktop">
+                <a href="/#hero" class="nav-link active">
+                    <span>Αρχική</span>
+                </a>
+                <a href="/#services" class="nav-link">
+                    <span>Υπηρεσίες</span>
+                </a>
+                <a href="/#about" class="nav-link">
+                    <span>Σχετικά</span>
+                </a>
+                <a href="/#contact" class="nav-link">
+                    <span>Επικοινωνία</span>
+                </a>
+            </nav>
+
+            <a href="/#contact" class="book-btn">Κλείσε Ραντεβού</a>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/#hero" onclick="closeMobileMenu()">Αρχική</a>
+            <a href="/#services" onclick="closeMobileMenu()">Υπηρεσίες</a>
+            <a href="/#about" onclick="closeMobileMenu()">Σχετικά</a>
+            <a href="/#contact" onclick="closeMobileMenu()">Επικοινωνία</a>
+            <a href="/#contact" class="book-btn" onclick="closeMobileMenu()">Κλείσε Ραντεβού</a>
+        </div>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Μιχάλης Σωτηριάδης - Όλα τα δικαιώματα διατηρούνται</p>
+    </footer>
+
+    <script is:inline>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('open');
+        }
+
+        // Service card flip functionality
+        function toggleCard(card) {
+            if (window.innerWidth <= 768) {
+                const serviceCard = card.parentElement;
+                const allCards = document.querySelectorAll('.service-card');
+                
+                allCards.forEach(c => {
+                    if (c !== serviceCard) {
+                        c.classList.remove('active');
+                    }
+                });
+                
+                serviceCard.classList.toggle('active');
+            }
+        }
+
+        // Close cards when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.service-card')) {
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+            }
+        });
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.animate-fade-in').forEach((element) => {
+                element.style.animationPlayState = 'running';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+	<!-- Sticky Call Button -->
+<a href="tel:+306944994979" class="sticky-call-btn" aria-label="Τηλεφωνική επικοινωνία">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+    <span class="call-text">Καλέστε τώρα</span>
+</a>
+
+<style>
+    .sticky-call-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 3rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        transition: all 0.3s ease;
+    }
+
+    .sticky-call-btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+
+    /* Στα κινητά μπορείς να το κάνεις να δείχνει μόνο το εικονίδιο αν προτιμάς, 
+       ή να κρατήσεις και το κείμενο. Εδώ φαίνεται ωραία και στα δύο. */
+    @media (max-width: 480px) {
+        .sticky-call-btn {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.85rem;
+            border-radius: 50%;
+        }
+        .call-text {
+            display: none; /* Σμίκρυνση σε σκέτο κυκλικό κουμπί με εικονίδιο στις πολύ μικρές οθόνες */
+        }
+    }
+</style>
+</body>
+</html>

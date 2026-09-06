@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Σχετικά με τον Μιχάλη Σωτηριάδη | Ψυχολόγος Άνω Τούμπα">
+    <main class="about-page">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="about-header animate-fade-in">
+                <span class="badge">Βιογραφικό & Φιλοσοφία</span>
+                <h1>Μιχάλης Σωτηριάδης</h1>
+                <p class="subtitle">Ψυχολόγος • Άνω Τούμπα, Θεσσαλονίκη</p>
+            </div>
+
+            <!-- Content Card -->
+            <div class="about-card animate-fade-in">
+                <div class="content-body">
+                    <p class="lead">
+                        Καλώς ήρθατε. Ως ψυχολόγος, πιστεύω ακράδαντα ότι η θεραπευτική διαδικασία δεν είναι μια τυπική συνεδρία, αλλά ένας ασφαλής, ειλικρινλής χώρος συνάντησης και αυτογνωσίας.
+                    </p>
+                    <p>
+                        Στόχος μου είναι να δημιουργήσω ένα περιβάλλον αποδοχής, χωρίς κριτική, όπου μπορείτε να εξερευνήσετε τις σκέψεις και τα συναισθήματά σας με τον δικό σας ρυθμό, αντιμετωπίζοντας τις δυσκολίες της καθημερινότητας.
+                    </p>
+
+                    <h2>Η προσέγγισή μου</h2>
+                    <p>
+                        Η δουλειά μας εστιάζεται στη διαχείριση του άγχους, των συναισθηματικών δυσκολιών και στην ενίσχυση της ψυχικής ανθεκτικότητας. Δουλεύουμε μαζί για να εντοπίσουμε τα εμπόδια που σας κρατούν πίσω και να χτίσουμε πρακτικά εργαλεία για μια πιο ισορροπημένη ζωή.
+                    </p>
+
+                    <blockquote>
+                        "Η αλλαγή δεν έρχεται όταν προσπαθούμε να γίνουμε κάποιος άλλος, αλλά όταν επιτρέπουμε στον εαυτό μας να είναι αυτός που πραγματικά είναι."
+                    </blockquote>
+                </div>
+
+                <!-- Call to Action Box inside card -->
+                <div class="about-cta">
+                    <h3>Θέλετε να προγραμματίσουμε μια συνάντηση;</h3>
+                    <p>Μπορείτε να επικοινωνήσετε μαζί μου άμεσα τηλεφωνικά, μέσω WhatsApp ή email.</p>
+                    <a href="/#contact" class="hero-btn">Επικοινωνία</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .about-page {
+            padding: 8rem 0 6rem 0;
+            background: linear-gradient(to bottom, #ffffff, var(--gray-50));
+        }
+
+        .about-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(149, 50, 87, 0.08);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .about-header h1 {
+            font-size: 2.75rem;
+            color: var(--gray-800);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .about-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1.5rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            padding: 3.5rem;
+        }
+
+        .content-body p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-body .lead {
+            font-size: 1.15rem;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        .content-body h2 {
+            font-size: 1.5rem;
+            color: var(--gray-800);
+            font-weight: 600;
+            margin: 2.5rem 0 1rem 0;
+        }
+
+        .content-body blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            color: var(--gray-800);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .about-cta {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--gray-100);
+            text-align: center;
+        }
+
+        .about-cta h3 {
+            font-size: 1.3rem;
+            color: var(--gray-800);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-cta p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-card {
+                padding: 2rem 1.5rem;
+            }
+            .about-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</Layout>

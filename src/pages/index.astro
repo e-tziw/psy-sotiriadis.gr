@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Τραβάμε τα άρθρα, τα ταξινομούμε ανά ημερομηνία και κρατάμε τα 3 πιο πρόσφατα
+const latestPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+<Layout>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content animate-fade-in">
+            <h1>Μιχάλης Σωτηριάδης</h1>
+            <p class="animate-fade-in">
+                Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας
+            </p>
+            <a href="#contact" class="hero-btn animate-fade-in">
+                Κλείστε άμεσα ραντεβού
+            </a>
+        </div>
+    </section>
+
+    <!-- Session Types -->
+    <section id="session-types" class="session-types">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Τύποι Συνεδριών</h2>
+            <div class="session-grid">
+                <div class="session-card animate-fade-in">
+                    <div class="session-icon">
+                        <img src="https://i.imgur.com/iLV5PPX.jpeg" alt="Δια Ζώσης Συνεδρίες" />
+                    </div>
+                    <h3>Δια Ζώσης Συνεδρίες</h3>
+                    <p>Παρέχουμε συνεδρίες στο φυσικό μας χώρο, σε ένα ασφαλές και ήρεμο περιβάλλον.</p>
+                </div>
+                <div class="session-card animate-fade-in">
+                    <div class="session-icon">
+                        <img src="https://i.imgur.com/celeWqr.png" alt="Online Συνεδρίες" />
+                    </div>
+                    <h3>Online Συνεδρίες</h3>
+                    <p>Δυνατότητα για συνεδρίες μέσω διαδικτύου, από τον δικό σας χώρο με ασφάλεια και άνεση.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Υπηρεσίες</h2>
+            <div class="services-grid">
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Ατομική Συμβουλευτική</div>
+                        <div class="card-back">
+                            Βοήθεια στην αντιμετώπιση προσωπικών δυσκολιών και διαπροσωπικών ζητημάτων.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Συμβουλευτική Εφήβων</div>
+                        <div class="card-back">
+                            Υποστήριξη σε εφήβους για ζητήματα ταυτότητας, άγχους, σχολικής πίεσης και σχέσεων.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Ομαδική Συμβουλευτική</div>
+                        <div class="card-back">
+                            Μοιράσου σκέψεις, άκου εμπειρίες και ενίσχυσε την προσωπική σου εξέλιξη μέσα από την ομάδα.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Διαταραχές Άγχους και Στρες</div>
+                        <div class="card-back">
+                            Αναγνώρισε τις αιτίες του άγχους και μάθε πώς να το διαχειρίζεσαι αποτελεσματικά. Απόκτησε επίγνωση και εργαλεία για να θέσεις το άγχος υπό έλεγχο.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Διαταραχές Διάθεσης</div>
+                        <div class="card-back">
+                            Μη μένεις στις μεταπτώσεις. Μάθε πώς να διαχειρίζεσαι την αλλαγή και να ενισχύεις τη συναισθηματική σου ανθεκτικότητα.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate-fade-in">
+                    <div class="card-inner" tabindex="0" onclick="toggleCard(this)">
+                        <div class="card-front">Επαγγελματικός Προσανατολισμός</div>
+                        <div class="card-back">
+                            Γνώρισε τον εαυτό σου και επίλεξε με αυτοπεποίθηση την καριέρα που σου ταιριάζει.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Σχετικά με τον Μιχάλη</h2>
+            <div class="about-content animate-fade-in">
+                <div class="about-image">
+                    <img src="https://i.ibb.co/nyVjmLd/IMG-1330.jpg" alt="Μιχάλης Σωτηριάδης" />
+                </div>
+                <div class="about-text">
+      <p>Ο Μιχάλης Σωτηριάδης είναι απόφοιτος του τμήματος Ψυχολογίας στο <strong>University of Sheffield</strong> (Πανεπιστήμιο του Σέφιλντ) έπειτα μετακόμισε στην Αθήνα για να συνεχίσει τις μεταπτυχιακές του σπουδές. 
+Έχει αποκτήσει το μεταπτυχιακό του πάνω στην Οργανωσιακή Ψυχολογία από το <b>Deree - The American College of Greece</b>. Εκπαιδεύεται πάνω στη Γνωστική Συμπεριφορική Ψυχοθεραπεία από την <b>Ελληνική Εταιρία Γνωστικής Συμπεριφορικής Ψυχοθεραπείας</b>. Επίσης, έχει εκπαιδευτεί πάνω στην Σχολική Ψυχολογία με ειδίκευση πάνω στην Διαταραχή Αυτιστικού Φάσματος από το <b>Εθνικό Καποδιστριακό Πανεπιστήμιο Αθηνών</b>. Επιπρόθετα, εκπαιδεύεται συστηματικά σε σεμινάρια και θεραπευτικές τεχνικές όπως και σε διάφορα συνέδρια ψυχολογίας. Επιπλέον, έχει εργαστεί στην <b>Βοστώνη</b> καθώς και στην <b>Αθήνα</b> κατά την διάρκεια των σπουδών του, δινοντάς του ποικιλόμορφες εμπειρίες εμπλουτίζοντας τις γνώσεις του πάνω στην επιστήμη της Ψυχολογίας.
+Υπηρέτησε ως ψυχολόγος  στην Λήμνο, αποκτώντας έτσι και από εκεί μεγάλη εμπειρία λόγω πληθώρας περιστατικών, τόσο σε κλινικό όσο και κοινωνικό επίπεδο. Τέλος έχει συμμετάσχει σε ερευνητικά projects σε Αμερική και Ευρωπαϊκή Ένωση, κατά την ακαδημαϊκή και επαγγελματική του καριέρα.</p>
+      <p>Ειδικεύεται σε τεχνικές διαχείρισης άγχους, κατάθλιψης, και βελτίωσης διαπροσωπικών σχέσεων, προσφέροντας ένα ασφαλές και εμπιστευτικό περιβάλλον.</p>
+    </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Latest Blog Posts -->
+    <section id="latest-blog" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Τελευταία Άρθρα</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                {latestPosts.map((post) => (
+                    <a href={`/blog/${post.id}/`} style="text-decoration: none;">
+                        <div class="session-card animate-fade-in" style="height: 100%; display: flex; flex-direction: column; padding: 2rem;">
+                            <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 1rem;">{post.data.title}</h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem; flex-grow: 1;">
+                                {post.data.description}
+                            </p>
+                            <span style="color: var(--primary-dark); font-weight: bold; font-size: 0.9rem; margin-top: auto;">
+                                Διαβάστε περισσότερα &rarr;
+                            </span>
+                        </div>
+                    </a>
+                ))}
+            </div>
+
+            <div style="text-align: center; margin-top: 3.5rem;">
+                <a href="/blog" class="hero-btn animate-fade-in" style="background: var(--gray-800);">Δείτε Όλα τα Άρθρα</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Επικοινωνία</h2>
+            
+            <!-- Contact Buttons -->
+            <div class="contact-buttons animate-fade-in">
+                <a href="https://www.instagram.com/sotiriadis.psychologist/" target="_blank" rel="noopener noreferrer" class="contact-btn instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="mailto:m.sotiriadis@outlook.com" class="contact-btn email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m4 4 7.07 7.07a2 2 0 0 0 2.83 0L21 4"/>
+                        <path d="m3 6 7.07 7.07a2 2 0 0 0 2.83 0L21 6"/>
+                        <path d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6"/>
+                    </svg>
+                    Email
+                </a>
+				<a href="https://wa.me/306944994979" target="_blank" rel="noopener noreferrer" class="contact-btn whatsapp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="tel:+306944994979" class="contact-btn phone">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    Τηλέφωνο
+                </a>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form animate-fade-in">
+                <h3>Κλείσε Ραντεβού</h3>
+                <form action="https://formspree.io/f/xrbkgqrb" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ονοματεπώνυμο" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Τηλέφωνο" />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Μήνυμα" required rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Αποστολή</button>
+                </form>
+            </div>
+
+            <!-- Map -->
+            <div class="map-container animate-fade-in">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d318.37078376806755!2d22.983105586824568!3d40.61068273933176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a8389421601af9%3A0x4451ff7e059d8e82!2sDim.%20Tsiapanou%2016%2C%20Pilea%20543%2052!5e0!3m2!1sen!2sgr!4v1748623906657!5m2!1sen!2sgr"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Χάρτης με τη διεύθυνση Dim. Tsiapanou 16, Πυλαία, Θεσσαλονίκη">
+                </iframe>
+            </div>
+        </div>
+    </section>
+</Layout>

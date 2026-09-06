@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout>
+  <!-- Προσθέτουμε padding-top για να μην κρύβεται κάτω από το fixed header -->
+  <section style="padding-top: 8rem; min-height: 100vh; background: var(--gray-50);">
+    <div class="container">
+      <h1 class="section-title">Άρθρα Ψυχολογίας</h1>
+      
+      <div style="display: grid; gap: 2rem; max-width: 800px; margin: 0 auto;">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}/`} style="text-decoration: none;">
+            <div class="session-card" style="padding: 1.5rem;">
+              <h3 style="color: var(--primary); margin-bottom: 0.5rem;">{post.data.title}</h3>
+              <p style="color: var(--gray-600); margin-bottom: 1rem;">{post.data.description}</p>
+              <span style="color: var(--primary-dark); font-weight: 600; font-size: 0.9rem;">
+                Διάβασε περισσότερα &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
