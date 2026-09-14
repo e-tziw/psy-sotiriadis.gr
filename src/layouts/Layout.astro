@@ -649,12 +649,20 @@
 
             .about-content {
                 flex-direction: column;
-                text-align: center;
+            }
+
+            .about-image {
+                margin: 0 auto; 
+                margin-bottom: 1.5rem; 
             }
 
             .about-image img {
                 width: 80vw;
                 max-width: 280px;
+            }
+            
+            .about-text {
+                text-align: left; /* Ευθυγραμμίζει το κείμενο αριστερά */
             }
 
             .service-card.active .card-inner {
@@ -696,6 +704,9 @@
                 <a href="/#about" class="nav-link">
                     <span>Σχετικά</span>
                 </a>
+                <a href="/blog" class="nav-link">
+                    <span>Άρθρα</span>
+                </a>
                 <a href="/#contact" class="nav-link">
                     <span>Επικοινωνία</span>
                 </a>
@@ -716,6 +727,7 @@
             <a href="/#hero" onclick="closeMobileMenu()">Αρχική</a>
             <a href="/#services" onclick="closeMobileMenu()">Υπηρεσίες</a>
             <a href="/#about" onclick="closeMobileMenu()">Σχετικά</a>
+            <a href="/blog" onclick="closeMobileMenu()">Άρθρα</a>
             <a href="/#contact" onclick="closeMobileMenu()">Επικοινωνία</a>
             <a href="/#contact" class="book-btn" onclick="closeMobileMenu()">Κλείσε Ραντεβού</a>
         </div>
