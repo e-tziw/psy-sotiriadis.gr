@@ -225,14 +225,21 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .mobile-menu .book-btn {
+.mobile-menu .book-btn {
             display: block;
             width: 100%;
             margin-top: 1rem;
             text-align: center;
+            color: var(--primary) !important; /* Αναγκάζει τα γράμματα να γίνουν μπορντό */
+            background: white;
         }
 
-        /* Hero Section */
+        .mobile-menu .book-btn:hover {
+            background: white !important; /* Κρατάει το φόντο λευκό */
+            color: var(--primary) !important; /* Κρατάει τα γράμματα μπορντό */
+        }
+
+/* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -241,17 +248,32 @@
             justify-content: center;
             text-align: center;
             color: white;
-            overflow: hidden;
-            background: url('https://i.ibb.co/0pqvxW8d/IMG-1916.jpg') center/cover no-repeat;
-            background-attachment: fixed;
+            -webkit-clip-path: inset(0);
+            clip-path: inset(0); /* Το "μαγικό" κόλπο που επιτρέπει το parallax στα κινητά */
         }
 
+        /* Η σταθερή εικόνα (Parallax Effect) που δουλεύει παντού */
         .hero::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://i.ibb.co/0pqvxW8d/IMG-1916.jpg') center/cover no-repeat;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Το σκούρο φίλτρο (overlay) μεταφέρεται στο ::after */
+        .hero::after {
             content: '';
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(1px);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -298,6 +320,32 @@
             box-shadow: 0 8px 25px rgba(149, 50, 87, 0.4);
         }
 
+/* Subtle Aura Animation για το κουμπί της Αρχικής */
+        .hero .hero-btn {
+            position: relative;
+        }
+
+        .hero .hero-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            z-index: -1;
+            filter: blur(10px); /* Μικρότερη διάχυση του φωτός */
+            animation: breathing-aura 3s ease-in-out infinite alternate; /* Πιο αργός και χαλαρός ρυθμός */
+        }
+
+        @keyframes breathing-aura {
+            0% {
+                transform: scale(1);
+                opacity: 0.25; /* Πολύ αχνό στο ξεκίνημα */
+            }
+            100% {
+                transform: scale(1.08); /* Μεγαλώνει ελάχιστα, ίσα-ίσα για να δώσει παλμό */
+                opacity: 0.65; /* Η μέγιστη φωτεινότητα παραμένει διακριτική */
+            }
+        }
         /* Section Styles */
         section {
             padding: 5rem 0;
@@ -379,12 +427,24 @@
             gap: 1.5rem;
         }
 
-        .service-card {
+.service-card {
             width: 100%;
             height: 12rem;
             perspective: 1000px;
+            animation: fade-in 0.8s ease-out forwards, float-card 5s ease-in-out infinite 0.8s;
         }
 
+        /* Με το !important επιβάλλουμε στον browser να σταματήσει την κίνηση */
+        .service-card:hover,
+        .service-card:focus-within,
+        .service-card.active {
+            animation-play-state: paused !important;
+        }
+
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
         .card-inner {
             position: relative;
             width: 100%;
@@ -643,9 +703,6 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                background-attachment: scroll;
-            }
 
             .about-content {
                 flex-direction: column;
@@ -685,7 +742,7 @@
                 justify-content: center;
             }
         }
-    </style>
+            </style>
 </head>
 <body>
     <header>
@@ -830,6 +887,7 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         z-index: 999;
         transition: all 0.3s ease;
+        animation: subtle-bounce 4s infinite;
     }
 
     .sticky-call-btn:hover {
@@ -837,6 +895,13 @@
         transform: translateY(-3px);
         box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
         color: white;
+        animation: none;
+    }
+
+    @keyframes subtle-bounce {
+        0%, 85%, 100% { transform: translateY(0); }
+        90% { transform: translateY(-6px); }
+        95% { transform: translateY(-2px); }
     }
 
     /* Στα κινητά μπορείς να το κάνεις να δείχνει μόνο το εικονίδιο αν προτιμάς, 
