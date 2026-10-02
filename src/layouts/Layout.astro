@@ -904,19 +904,14 @@
         95% { transform: translateY(-2px); }
     }
 
-    /* Στα κινητά μπορείς να το κάνεις να δείχνει μόνο το εικονίδιο αν προτιμάς, 
-       ή να κρατήσεις και το κείμενο. Εδώ φαίνεται ωραία και στα δύο. */
-    @media (max-width: 480px) {
+@media (max-width: 480px) {
         .sticky-call-btn {
             bottom: 1.5rem;
             right: 1.5rem;
-            padding: 0.85rem;
-            border-radius: 50%;
-        }
-        .call-text {
-            display: none; /* Σμίκρυνση σε σκέτο κυκλικό κουμπί με εικονίδιο στις πολύ μικρές οθόνες */
+            padding: 0.75rem 1.25rem; /* Διατηρούμε το padding για να χωράει όμορφα το κείμενο */
+            border-radius: 3rem; /* Κρατάμε το οβάλ σχήμα όπως και στο desktop */
         }
     }
-</style>
+    </style>
 </body>
 </html>
