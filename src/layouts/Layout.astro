@@ -860,6 +860,62 @@
             el.style.animationPlayState = 'paused';
             observer.observe(el);
         });
+
+        // -----------------------------------------------------------
+        // ΝΕΟΣ ΚΩΔΙΚΑΣ: Smooth Scroll, URL Cleanup & Refresh Position
+        // -----------------------------------------------------------
+        
+        // 1. Ρύθμιση: Να πηγαίνει ΠΑΝΤΑ στην κορυφή στο refresh
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+
+        // 2. Ομαλό σκρολάρισμα & απόκρυψη του # από το URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerHeight = 64; // Το ύψος του σταθερού μενού
+            const links = document.querySelectorAll('a[href^="#"], a[href^="/#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    let targetId = this.getAttribute('href');
+                    
+                    if (targetId.startsWith('/#')) {
+                        targetId = targetId.substring(1);
+                    }
+
+                    if (targetId === '#' || targetId === '') return;
+
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - headerHeight;
+      
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: 'smooth'
+                        });
+
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        if (mobileMenu && mobileMenu.classList.contains('open')) {
+                            mobileMenu.classList.remove('open');
+                        }
+                    }
+                });
+            });
+
+            if (window.location.hash) {
+                setTimeout(() => {
+                    history.replaceState("", document.title, window.location.pathname + window.location.search);
+                }, 100);
+            }
+        });
     </script>
 	<!-- Sticky Call Button -->
 <a href="tel:+306944994979" class="sticky-call-btn" aria-label="Τηλεφωνική επικοινωνία">
