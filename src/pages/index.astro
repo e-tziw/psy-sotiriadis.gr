@@ -8,19 +8,25 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 <Layout>
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="hero-content animate-fade-in">
             <h1>Μιχάλης Σωτηριάδης</h1>
             <p class="animate-fade-in">
                 Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας
             </p>
-            <a href="/#contact" class="hero-btn animate-fade-in">
+            
+            <!-- Απαραίτητα αρχεία του Calendly για το Popup -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            
+            <!-- Νέο κουμπί που ανοίγει κατευθείαν το Popup -->
+            <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sotiriadis-mike/30min'}); return false;" class="hero-btn animate-fade-in">
                 Κλείστε άμεσα ραντεβού
             </a>
         </div>
     </section>
-
+    
     <!-- Session Types -->
     <section id="session-types" class="session-types">
         <div class="container">
@@ -193,34 +199,24 @@ const latestPosts = (await getCollection('blog'))
                 </a>
             </div>
 
-<!-- Contact Form -->
-            <div class="contact-form animate-fade-in">
-                <h3>Κλείσε Ραντεβού</h3>
+<!-- Booking Section (Calendly & Instadoctor) -->
+            <div class="calendly-wrapper animate-fade-in" style="background: white; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); padding: 1rem; max-width: 1000px; margin: 0 auto; border: 1px solid var(--gray-200);">
+                <h3 style="text-align: center; font-size: 1.5rem; font-weight: bold; color: var(--gray-800); margin-bottom: 0.5rem; margin-top: 1rem;">Κλείσε Ραντεβού</h3>
+                <p style="text-align: center; color: var(--gray-600); margin-bottom: 1rem;">
+                    Επιλέξτε την ημέρα και ώρα που σας εξυπηρετεί από το παρακάτω ημερολόγιο.
+                </p>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/sotiriadis-mike/30min" style="min-width:320px;height:900px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
 
-                <!-- Instadoctor Button -->
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <a href="https://www.instadoctor.gr/doctor/sotiriadis-michalis" title="Σωτηριάδης Μιχάλης Ψυχολόγος - Ψυχοθεραπευτής" target="_blank" style="display: inline-block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                        <img src="https://www.instadoctor.gr/assets/images/banners/Booking-Blue-Banner-Circle.svg" alt="Κλείσε ραντεβού από το instadoctor.gr" style="max-width: 140px; height: auto;">
-                    </a>
-                    <p style="font-size: 0.95rem; color: var(--gray-600); margin-top: 1rem;">
-                        Μέσω της πλατφόρμας Instadoctor <br>ή συμπληρώνοντας την παρακάτω φόρμα:
-                    </p>
-                </div>
-
-                <form action="https://formspree.io/f/xrbkgqrb" method="POST">                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Ονοματεπώνυμο" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Τηλέφωνο" />
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Μήνυμα" required rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Αποστολή</button>
-                </form>
+            <!-- Instadoctor Alternative -->
+            <div class="instadoctor-wrapper animate-fade-in" style="text-align: center; margin-top: 3.5rem;">
+                <p style="font-size: 1.1rem; color: var(--gray-700); margin-bottom: 1rem; font-weight: 500;">
+                    Εναλλακτικά, κλείστε ραντεβού μέσω Instadoctor
+                </p>
+                <a href="https://www.instadoctor.gr/doctor/sotiriadis-michalis" title="Σωτηριάδης Μιχάλης Ψυχολόγος - Ψυχοθεραπευτής" target="_blank" style="display: inline-block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <img src="https://www.instadoctor.gr/assets/images/banners/Booking-Blue-Banner-Circle.svg" alt="Κλείσε ραντεβού από το instadoctor.gr" style="max-width: 140px; height: auto;">
+                </a>
             </div>
 
             <!-- Map -->

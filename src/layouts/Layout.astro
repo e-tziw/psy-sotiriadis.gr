@@ -16,10 +16,10 @@
     <meta property="og:title" content="Μιχάλης Σωτηριάδης - Ψυχολόγος - Άνω Τούμπα" />
     <meta property="og:description" content="Εξειδικευμένος ψυχολόγος για την υποστήριξη της ψυχικής σας υγείας" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+    <meta property="og:image" content="https://psy-sotiriadis.gr/logo-white.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://i.ibb.co/7f45q8S/Logo-white-03.png" />
+    <meta name="twitter:image" content="https://psy-sotiriadis.gr/logo-white.png" />
 
     <style is:global>
         * {
@@ -252,7 +252,7 @@
             clip-path: inset(0); /* Το "μαγικό" κόλπο που επιτρέπει το parallax στα κινητά */
         }
 
-        /* Η σταθερή εικόνα (Parallax Effect) που δουλεύει παντού */
+/* Η σταθερή εικόνα (Parallax Effect) που δουλεύει παντού */
         .hero::before {
             content: '';
             position: fixed;
@@ -260,11 +260,11 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: url('https://i.ibb.co/0pqvxW8d/IMG-1916.jpg') center/cover no-repeat;
+            background: url('/hero-bg.jpg') center/cover no-repeat; /* Διαβάζει πλέον την τοπική εικόνα */
             z-index: -2;
             pointer-events: none;
         }
-
+        
         /* Το σκούρο φίλτρο (overlay) μεταφέρεται στο ::after */
         .hero::after {
             content: '';
@@ -748,7 +748,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="https://i.ibb.co/m5126B8c/Logo-white-03-1.png" alt="Λογότυπο" />
+                <img src="/logo-white.png" alt="Λογότυπο Μιχάλης Σωτηριάδης" />
             </div>
 
             <nav class="nav-desktop">
